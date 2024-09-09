@@ -1,4 +1,4 @@
-class UserJson {
+class User {
   final int id;
   final String name;
   final String username;
@@ -6,7 +6,7 @@ class UserJson {
   final String phone;
   final String website;
 
-  UserJson({
+  User({
     required this.id,
     required this.name,
     required this.username,
@@ -14,13 +14,4 @@ class UserJson {
     required this.phone,
     required this.website,
   });
-
-  factory UserJson.fromJson(Map<String, dynamic> json) => UserJson(
-        id: json["id"],
-        name: json["name"],
-        username: json["username"],
-        email: json["email"],
-        phone: json["phone"],
-        website: json["website"],
-      );
 }

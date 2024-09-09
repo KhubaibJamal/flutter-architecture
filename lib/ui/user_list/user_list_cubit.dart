@@ -1,5 +1,5 @@
-import 'package:architecture/user_repository.dart';
-import 'package:architecture/users_list_state.dart';
+import 'package:architecture/domain/repositories/user_repository.dart';
+import 'package:architecture/ui/user_list/users_list_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserListCubit extends Cubit<UsersListState> {
