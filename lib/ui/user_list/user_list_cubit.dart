@@ -8,7 +8,11 @@ class UserListCubit extends Cubit<UsersListState> {
 
   Future<void> fetchUser() async {
     emit(state.copyWith(isLoading: true));
-    final users = await userRepository.getUsers();
-    emit(state.copyWith(users: users, isLoading: false));
+    try {
+      final users = await userRepository.getUsers();
+      emit(state.copyWith(users: users, isLoading: false));
+    } catch (e) {
+      emit(state.copyWith(error: "Failed to fetch users", isLoading: false));
+    }
   }
 }

@@ -16,6 +16,11 @@ class UserListPage extends StatelessWidget {
           bloc: BlocProvider.of<UserListCubit>(context),
           builder: (context, state) {
             final userState = state as UsersListState;
+            if (userState.error != null) {
+              return Center(
+                child: Text(userState.error!),
+              );
+            }
             return userState.isLoading
                 ? const CircularProgressIndicator()
                 : ListView(
