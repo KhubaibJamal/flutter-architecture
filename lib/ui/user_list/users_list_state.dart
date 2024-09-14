@@ -10,7 +10,7 @@ class UsersListState {
     required this.error,
   });
 
-  factory UsersListState.empty() => const UsersListState(
+  factory UsersListState.initial() => const UsersListState(
         users: [],
         isLoading: false,
         error: '',

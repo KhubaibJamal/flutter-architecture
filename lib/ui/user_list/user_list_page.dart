@@ -1,3 +1,5 @@
+import 'package:architecture/ui/user_details/user_details_initial_params.dart';
+import 'package:architecture/ui/user_details/user_details_page.dart';
 import 'package:architecture/ui/user_list/user_list_cubit.dart';
 import 'package:architecture/ui/user_list/users_list_state.dart';
 import 'package:architecture/ui/widgets/user_card.dart';
@@ -16,21 +18,45 @@ class UserListPage extends StatelessWidget {
           bloc: BlocProvider.of<UserListCubit>(context),
           builder: (context, state) {
             final userState = state as UsersListState;
-            if (userState.error != null) {
-              return Center(
-                child: Text(userState.error!),
-              );
+
+            if (userState.error == null) {
+              return Center(child: Text(userState.error!));
+            } else {
+              return userState.isLoading
+                  ? const CircularProgressIndicator()
+                  : ListView(
+                      children: userState.users
+                          .map(
+                            (user) => UserCard(
+                              user: user,
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => UserDetailsPage(
+                                      initialParams:
+                                          UserDetailsInitialParam(user: user),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          )
+                          .toList(),
+                    );
             }
-            return userState.isLoading
-                ? const CircularProgressIndicator()
-                : ListView(
-                    children: userState.users
-                        .map((user) => UserCard(user: user))
-                        .toList(),
-                  );
           },
         ),
       ),
+      // body: Center(
+      //   child: ListView(
+      //     children: [
+      //       Text("data"),
+      //       Text("data"),
+      //       Text("data"),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserListCubit extends Cubit<UsersListState> {
   final UserRepository userRepository;
-  UserListCubit(this.userRepository) : super(UsersListState.empty());
+  UserListCubit(this.userRepository) : super(UsersListState.initial());
 
   Future<void> fetchUser() async {
     emit(state.copyWith(isLoading: true));

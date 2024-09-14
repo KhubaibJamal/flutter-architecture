@@ -14,4 +14,12 @@ class User {
     required this.phone,
     required this.website,
   });
+
+  const User.empty()
+      : id = 000,
+        name = "",
+        username = "",
+        email = "",
+        phone = "",
+        website = "";
 }

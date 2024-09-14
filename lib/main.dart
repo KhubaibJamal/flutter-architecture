@@ -1,5 +1,6 @@
 import 'package:architecture/data/rest_api_user_repository.dart';
 import 'package:architecture/domain/repositories/user_repository.dart';
+import 'package:architecture/ui/user_details/user_details_cubit.dart';
 import 'package:architecture/ui/user_list/user_list_cubit.dart';
 import 'package:architecture/ui/user_list/user_list_page.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ void main() {
   runApp(
     MultiBlocProvider(providers: [
       BlocProvider(create: (context) => UserListCubit(getIt())..fetchUser()),
+      BlocProvider(create: (context) => UserDetailsCubit()),
     ], child: const MyApp()),
   );
 }
@@ -29,3 +31,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
