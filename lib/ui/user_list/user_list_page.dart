@@ -1,13 +1,15 @@
 import 'package:architecture/ui/user_details/user_details_initial_params.dart';
 import 'package:architecture/ui/user_details/user_details_page.dart';
 import 'package:architecture/ui/user_list/user_list_cubit.dart';
+import 'package:architecture/ui/user_list/user_list_initial_params.dart';
 import 'package:architecture/ui/user_list/users_list_state.dart';
 import 'package:architecture/ui/widgets/user_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserListPage extends StatelessWidget {
-  const UserListPage({super.key});
+  final UserListInitialParams initialParams;
+  const UserListPage({super.key, required this.initialParams});
 
   @override
   Widget build(BuildContext context) {

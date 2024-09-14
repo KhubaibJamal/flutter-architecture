@@ -2,6 +2,7 @@ import 'package:architecture/data/rest_api_user_repository.dart';
 import 'package:architecture/domain/repositories/user_repository.dart';
 import 'package:architecture/ui/user_details/user_details_cubit.dart';
 import 'package:architecture/ui/user_list/user_list_cubit.dart';
+import 'package:architecture/ui/user_list/user_list_initial_params.dart';
 import 'package:architecture/ui/user_list/user_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,8 +28,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const UserListPage(),
+      home: const UserListPage(initialParams: UserListInitialParams()),
     );
   }
 }
-
