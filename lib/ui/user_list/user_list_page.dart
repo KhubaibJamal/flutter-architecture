@@ -1,5 +1,3 @@
-import 'package:architecture/ui/user_details/user_details_initial_params.dart';
-import 'package:architecture/ui/user_details/user_details_page.dart';
 import 'package:architecture/ui/user_list/user_list_cubit.dart';
 import 'package:architecture/ui/user_list/user_list_initial_params.dart';
 import 'package:architecture/ui/user_list/users_list_state.dart';
@@ -7,9 +5,23 @@ import 'package:architecture/ui/widgets/user_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class UserListPage extends StatelessWidget {
+class UserListPage extends StatefulWidget {
   final UserListInitialParams initialParams;
   const UserListPage({super.key, required this.initialParams});
+
+  @override
+  State<UserListPage> createState() => _UserListPageState();
+}
+
+class _UserListPageState extends State<UserListPage> {
+  late UserListCubit cubit;
+
+  @override
+  void initState() {
+    super.initState();
+    cubit = BlocProvider.of<UserListCubit>(context);
+    cubit.navigator.context = context;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +29,7 @@ class UserListPage extends StatelessWidget {
       appBar: AppBar(),
       body: Center(
         child: BlocBuilder(
-          bloc: BlocProvider.of<UserListCubit>(context),
+          bloc: cubit,
           builder: (context, state) {
             final userState = state as UsersListState;
 
@@ -31,17 +43,7 @@ class UserListPage extends StatelessWidget {
                           .map(
                             (user) => UserCard(
                               user: user,
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => UserDetailsPage(
-                                      initialParams:
-                                          UserDetailsInitialParam(user: user),
-                                    ),
-                                  ),
-                                );
-                              },
+                              onTap: () => cubit.onUserTap(user),
                             ),
                           )
                           .toList(),
@@ -50,15 +52,6 @@ class UserListPage extends StatelessWidget {
           },
         ),
       ),
-      // body: Center(
-      //   child: ListView(
-      //     children: [
-      //       Text("data"),
-      //       Text("data"),
-      //       Text("data"),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
