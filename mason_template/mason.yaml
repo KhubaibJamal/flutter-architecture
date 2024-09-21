@@ -1,0 +1,4 @@
+bricks:
+  world:
+    path: ./world
+  hello: ^0.1.0+1

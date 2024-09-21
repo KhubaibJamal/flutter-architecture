@@ -1,0 +1,3 @@
+class UserDetailsInitialParam {
+  UserDetailsInitialParam();
+}
