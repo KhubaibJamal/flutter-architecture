@@ -1,4 +1,6 @@
 bricks:
   world:
     path: ./world
+  page:
+    path: ./page
   hello: ^0.1.0+1
